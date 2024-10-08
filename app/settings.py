@@ -117,8 +117,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+# Отвечает за название url-адреса при нажатии на f12
 STATIC_URL = 'static/'
 
+# Отвечает за логику url-адресов
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
