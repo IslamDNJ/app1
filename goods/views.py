@@ -15,9 +15,10 @@ def catalog(request):
 
 
 # Отображение конктретного товара
-def product(request, product_id):
+def product(request, product_slug):
     
-    product = Products.objects.get(id=product_id)
+    product = Products.objects.get(slug=product_slug)
+    
     context = {
         'product': product,
     }
