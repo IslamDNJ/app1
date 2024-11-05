@@ -89,7 +89,9 @@
             </li>
             
             {% for page in goods.paginator.page_range %}
-                <li class="page-item"><a class="page-link" href="{% url "catalog:index" slug_url page %}">{{page}}</a></li>
+                <li class="page-item {% if goods.number == page %} active {% endif %}">
+                    <a class="page-link" href="{% url "catalog:index" slug_url page %}">{{page}}</a>
+                </li>
             {% endfor %}
             
             <li class="page-item {% if not goods.has_next %} disabled {% endif %}">
