@@ -9,8 +9,15 @@
                 <h2 class="text-center mb-4">Авторизация</h2>
                 <form action="{% url "user:login" %}" method="post">
                     {% csrf_token %}
-                    {{form}}
-
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.username.id_for_label }}" class="form-label">Имя пользователя</label>
+                        {{form.username}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.password.id_for_label }}" class="form-label">Пароль</label>
+                        {{ form.password }}
+                    </div>
                     {% comment %} <div class="mb-3">
                         <label for="username" class="form-label">Имя пользователя</label>
                         <input type="text" class="form-control" id="username" placeholder="Введите ваше имя пользователя" required>
