@@ -186,11 +186,8 @@
                 </div>
                 <div class="col-lg-10">
                     <!-- Контент на странице -->
-                    {% block content %}
-                        {% comment %} 
-                            Информация
-                        {% endcomment %}
-                    {% endblock content %}
+                    {% include "includes/notifications.html" %}
+                    {% block content %}{% endblock content %}
                 </div>
             </div>
         </div>
