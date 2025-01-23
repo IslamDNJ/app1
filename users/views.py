@@ -16,16 +16,21 @@ def login(request):
             username = request.POST['username']
             password = request.POST['password']
             user = auth.authenticate(username=username, password=password)
-            
+
             # Прокидываение корзины для не авторизованного пользоватлея
             session_key = request.session.session_key
 
             if user:
                 auth.login(request, user)
                 messages.success(request, f"{username}, Вы вошли в аккаунт")
-                
+
                 # Прокидывание корзины после авторизации
                 if session_key:
+                    # Удалить старые авторизованные корзины пользователей
+                    forgot_carts = Cart.objects.filter(user=user)
+                    if forgot_carts.exists():
+                        forgot_carts.delete()
+                    # Добавить новые авторизованные пользовательские корзины из анонимного сеанса
                     Cart.objects.filter(session_key=session_key).update(user=user)
 
                 redirect_page = request.POST.get('next', None)

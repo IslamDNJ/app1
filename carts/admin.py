@@ -10,6 +10,7 @@ class CartTabAdmin(admin.TabularInline):
     readonly_fields = ("created_timestamp",)
     extra = 1
 
+
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
     list_display = ["user_display", "product_display", "quantity", "created_timestamp",]
@@ -22,4 +23,7 @@ class CartAdmin(admin.ModelAdmin):
 
     def product_display(self, obj):
         return str(obj.product.name)
-        
+
+    # user_display и product_display изменяют названия столбцов в панели администратора
+    user_display.short_description = "Пользователь"
+    product_display.short_description = "Товар"
